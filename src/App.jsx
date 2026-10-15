@@ -47,25 +47,27 @@ export default function App() {
   const [activePillar, setActivePillar] = useState(null);
 
   return (
-    <div className="min-h-screen bg-slate-50 font-sans text-slate-800 pb-12">
+    <div className="min-h-screen bg-slate-50 font-sans text-slate-800 pb-12 overflow-x-hidden">
       {/* Header Section */}
-      <header className="bg-slate-900 text-white py-16 px-4 text-center shadow-lg">
+      <header className="bg-gradient-to-b from-slate-900 to-slate-800 text-white py-16 px-4 text-center shadow-xl md:rounded-b-[3rem] rounded-b-3xl mb-12 relative">
         <div className="max-w-4xl mx-auto">
-          <div className="flex justify-center mb-4">
-            <Shield className="w-16 h-16 text-indigo-400" />
+          <div className="flex justify-center mb-6">
+            <div className="p-4 bg-indigo-500/20 rounded-full backdrop-blur-sm">
+              <Shield className="w-16 h-16 text-indigo-400" />
+            </div>
           </div>
-          <h1 className="text-4xl md:text-5xl font-extrabold mb-4 tracking-tight">
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold mb-6 tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-white to-slate-300">
             La Tríada de la Ciberseguridad
           </h1>
-          <p className="text-lg md:text-xl text-slate-300 max-w-2xl mx-auto">
+          <p className="text-lg md:text-xl text-slate-300 max-w-2xl mx-auto leading-relaxed">
             El corazón de la seguridad informática resumido en 3 pilares fundamentales. 
             Imagina que tu información es un tesoro; así es como lo protegemos.
           </p>
         </div>
       </header>
 
-      <main className="max-w-5xl mx-auto px-4 -mt-8">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 relative z-10">
+      <main className="max-w-5xl mx-auto px-4 sm:px-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 relative z-10 -mt-16 md:-mt-20">
           {triadData.map((pillar) => {
             const Icon = pillar.icon;
             const isActive = activePillar === pillar.id;
@@ -108,12 +110,19 @@ export default function App() {
               return (
                 <div 
                   key={`detail-${pillar.id}`} 
-                  className={`bg-white rounded-3xl shadow-xl overflow-hidden border-2 ${pillar.borderColor} animate-in fade-in slide-in-from-bottom-4`}
+                  className={`bg-white rounded-3xl shadow-xl overflow-hidden border-2 ${pillar.borderColor} transform transition-all duration-500`}
+                  style={{ animation: 'fadeInUp 0.4s ease-out forwards' }}
                 >
+                  <style>{`
+                    @keyframes fadeInUp {
+                      from { opacity: 0; transform: translateY(20px); }
+                      to { opacity: 1; transform: translateY(0); }
+                    }
+                  `}</style>
                   <div className={`h-3 w-full ${pillar.color}`}></div>
-                  <div className="p-8 md:p-12">
-                    <h3 className={`text-3xl font-bold mb-8 ${pillar.textColor} flex items-center gap-3`}>
-                      <pillar.icon className="w-8 h-8" />
+                  <div className="p-6 sm:p-8 md:p-12">
+                    <h3 className={`text-2xl md:text-3xl font-bold mb-8 ${pillar.textColor} flex items-center gap-3`}>
+                      <pillar.icon className="w-8 h-8 flex-shrink-0" />
                       Entendiendo la {pillar.title}
                     </h3>
                     
