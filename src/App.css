@@ -196,6 +196,8 @@ body {
 
   background-color: white;
 
+  color: var(--text-main);
+
   border: none;
 
   border-radius: 1rem;
@@ -247,6 +249,8 @@ body {
 
 
 .card-title {
+
+  color: var(--text-main);
 
   font-size: 1.5rem;
 
