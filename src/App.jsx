@@ -128,6 +128,7 @@ export default function App() {
       <footer className="app-footer">
         <p>Infografía interactiva creada para enseñar los fundamentos de la Ciberseguridad.</p>
         <p>Ningún sistema es 100% seguro si falla uno de estos 3 pilares.</p>
+        <p>Hecho por: https://github.com/Tutotutolandia.</p>
       </footer>
     </div>
   );

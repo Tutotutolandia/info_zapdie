@@ -1,16 +1,55 @@
-# React + Vite
+# 🛡️ La Tríada de la Ciberseguridad (info_zapdie)
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+Una infografía web interactiva diseñada para enseñar los conceptos fundamentales de la ciberseguridad (Confidencialidad, Integridad y Disponibilidad) a personas sin conocimientos técnicos previos.
 
-Currently, two official plugins are available:
+El proyecto utiliza analogías de la vida cotidiana para hacer que los conceptos abstractos sean fáciles de entender y recordar.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## ✨ Características
 
-## React Compiler
+- **Diseño Interactivo:** Tarjetas clickeables que revelan información detallada de cada pilar de la ciberseguridad.
+- **Enfoque Educativo:** Explicaciones divididas en dos contextos: "En la vida real" (analogías sencillas) y "En el mundo digital" (aplicación técnica).
+- **Totalmente Responsivo:** Se adapta perfectamente a dispositivos móviles, tablets y pantallas de escritorio.
+- **Rendimiento Óptimo:** Construido con Vite para una carga ultrarrápida.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## 🛠️ Tecnologías Utilizadas
 
-## Expanding the Oxlint configuration
+- **React 18** - Biblioteca principal para la interfaz de usuario.
+- **Vite** - Herramienta de construcción y entorno de desarrollo (Bundler).
+- **CSS3 Puro** - Estilos personalizados con Flexbox, CSS Grid y animaciones sin depender de frameworks externos.
+- **Lucide React** - Biblioteca de iconos modernos y ligeros.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+## 🚀 Instalación y Uso Local
+
+Sigue estos pasos para correr el proyecto en tu computadora:
+
+1. **Clona el repositorio** (si ya lo tienes en GitHub) o ingresa a la carpeta del proyecto:
+   ```bash
+   cd info_zapdie
+   ```
+
+2. **Instala las dependencias** necesarias (asegúrate de tener [Node.js](https://nodejs.org/) instalado):
+   ```bash
+   npm install
+   ```
+   *Nota: Esto instalará `react`, `react-dom` y `lucide-react`.*
+
+3. **Inicia el servidor de desarrollo**:
+   ```bash
+   npm run dev
+   ```
+
+4. **Abre tu navegador**:
+   El terminal te mostrará un enlace (generalmente `http://localhost:5173`). Haz clic en él para ver la aplicación funcionando.
+
+## ☁️ Despliegue en Vercel
+
+Este proyecto está optimizado para ser desplegado fácilmente en **Vercel**:
+
+1. Sube tu proyecto a un repositorio en GitHub, GitLab o Bitbucket.
+2. Inicia sesión en [Vercel](https://vercel.com/) y haz clic en "Add New..." > "Project".
+3. Importa tu repositorio.
+4. Vercel detectará automáticamente que es un proyecto **Vite**. La configuración por defecto funcionará perfectamente:
+   - **Framework Preset:** Vite
+   - **Build Command:** `npm run build`
+   - **Output Directory:** `dist`
+5. Haz clic en **Deploy**. ¡En menos de un minuto tu sitio estará en vivo!
