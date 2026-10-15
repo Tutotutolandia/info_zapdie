@@ -1,122 +1,166 @@
-import { useState } from 'react'
-import heroImg from './assets/hero.png'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import './App.css'
+import React, { useState } from 'react';
+import { Lock, FileCheck, Activity, Shield, ArrowRight, Server, Key } from 'lucide-react';
 
-function App() {
-  const [count, setCount] = useState(0)
+const triadData = [
+  {
+    id: 'confidencialidad',
+    title: 'Confidencialidad',
+    shortDesc: 'Solo las personas autorizadas pueden ver la información.',
+    color: 'bg-blue-500',
+    lightColor: 'bg-blue-50',
+    textColor: 'text-blue-600',
+    borderColor: 'border-blue-200',
+    icon: Lock,
+    everydayExample: 'Es como un diario íntimo con candado. Solo tú tienes la llave para leerlo.',
+    cyberExample: 'Uso de contraseñas seguras, reconocimiento facial y encriptación (mezclar los datos para que sean ilegibles sin permiso).',
+    tools: [Key, Shield]
+  },
+  {
+    id: 'integridad',
+    title: 'Integridad',
+    shortDesc: 'La información es exacta y nadie la ha alterado sin permiso.',
+    color: 'bg-green-500',
+    lightColor: 'bg-green-50',
+    textColor: 'text-green-600',
+    borderColor: 'border-green-200',
+    icon: FileCheck,
+    everydayExample: 'Es como enviar una carta con un sello de cera. Si el sello está roto, sabes que alguien la abrió y pudo cambiar el mensaje.',
+    cyberExample: 'Permisos estrictos sobre quién puede editar un archivo y "sellos digitales" que avisan si un documento fue modificado.',
+    tools: [Shield, FileCheck]
+  },
+  {
+    id: 'disponibilidad',
+    title: 'Disponibilidad',
+    shortDesc: 'La información y los sistemas están listos cuando los necesitas.',
+    color: 'bg-orange-500',
+    lightColor: 'bg-orange-50',
+    textColor: 'text-orange-600',
+    borderColor: 'border-orange-200',
+    icon: Activity,
+    everydayExample: 'Es como un cajero automático. Esperas que funcione y tenga dinero cada vez que vas a usarlo, las 24 horas.',
+    cyberExample: 'Sistemas de respaldo (backups), servidores extra por si uno falla y protección contra ataques que intentan colapsar la red.',
+    tools: [Server, Activity]
+  }
+];
+
+export default function App() {
+  const [activePillar, setActivePillar] = useState(null);
 
   return (
-    <>
-      <section id="center">
-        <div className="hero">
-          <img src={heroImg} className="base" width="170" height="179" alt="" />
-          <img src={reactLogo} className="framework" alt="React logo" />
-          <img src={viteLogo} className="vite" alt="Vite logo" />
-        </div>
-        <div>
-          <h1>Hans Daddy</h1>
-          <p>
-            Edit <code>src/App.jsx</code> and save to test <code>HMR</code>
+    <div className="min-h-screen bg-slate-50 font-sans text-slate-800 pb-12">
+      {/* Header Section */}
+      <header className="bg-slate-900 text-white py-16 px-4 text-center shadow-lg">
+        <div className="max-w-4xl mx-auto">
+          <div className="flex justify-center mb-4">
+            <Shield className="w-16 h-16 text-indigo-400" />
+          </div>
+          <h1 className="text-4xl md:text-5xl font-extrabold mb-4 tracking-tight">
+            La Tríada de la Ciberseguridad
+          </h1>
+          <p className="text-lg md:text-xl text-slate-300 max-w-2xl mx-auto">
+            El corazón de la seguridad informática resumido en 3 pilares fundamentales. 
+            Imagina que tu información es un tesoro; así es como lo protegemos.
           </p>
         </div>
-        <button
-          type="button"
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
-        >
-          Count is {count}
-        </button>
-      </section>
+      </header>
 
-      <div className="ticks"></div>
+      <main className="max-w-5xl mx-auto px-4 -mt-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 relative z-10">
+          {triadData.map((pillar) => {
+            const Icon = pillar.icon;
+            const isActive = activePillar === pillar.id;
 
-      <section id="next-steps">
-        <div id="docs">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#documentation-icon"></use>
-          </svg>
-          <h2>Documentation</h2>
-          <p>Your questions, answered</p>
-          <ul>
-            <li>
-              <a href="https://vite.dev/" target="_blank">
-                <img className="logo" src={viteLogo} alt="" />
-                Explore Vite
-              </a>
-            </li>
-            <li>
-              <a href="https://react.dev/" target="_blank">
-                <img className="button-icon" src={reactLogo} alt="" />
-                Learn more
-              </a>
-            </li>
-          </ul>
+            return (
+              <button
+                key={pillar.id}
+                onClick={() => setActivePillar(isActive ? null : pillar.id)}
+                className={`flex flex-col items-center p-8 rounded-2xl transition-all duration-300 shadow-lg text-left w-full
+                  ${isActive 
+                    ? `${pillar.color} text-white scale-105 shadow-xl` 
+                    : 'bg-white hover:-translate-y-2 hover:shadow-xl'
+                  }
+                `}
+              >
+                <div className={`p-4 rounded-full mb-4 ${isActive ? 'bg-white/20' : pillar.lightColor}`}>
+                  <Icon className={`w-10 h-10 ${isActive ? 'text-white' : pillar.textColor}`} />
+                </div>
+                <h2 className="text-2xl font-bold mb-3 text-center w-full">
+                  {pillar.title}
+                </h2>
+                <p className={`text-center leading-relaxed ${isActive ? 'text-white/90' : 'text-slate-600'}`}>
+                  {pillar.shortDesc}
+                </p>
+                <div className={`mt-6 flex items-center text-sm font-semibold transition-opacity duration-300 
+                  ${isActive ? 'text-white opacity-100' : `${pillar.textColor} opacity-0`}`}
+                >
+                  Ver detalles <ArrowRight className="w-4 h-4 ml-1" />
+                </div>
+              </button>
+            );
+          })}
         </div>
-        <div id="social">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#social-icon"></use>
-          </svg>
-          <h2>Connect with us</h2>
-          <p>Join the Vite community</p>
-          <ul>
-            <li>
-              <a href="https://github.com/vitejs/vite" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#github-icon"></use>
-                </svg>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href="https://chat.vite.dev/" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#discord-icon"></use>
-                </svg>
-                Discord
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/vite_js" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#x-icon"></use>
-                </svg>
-                X.com
-              </a>
-            </li>
-            <li>
-              <a href="https://bsky.app/profile/vite.dev" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#bluesky-icon"></use>
-                </svg>
-                Bluesky
-              </a>
-            </li>
-          </ul>
-        </div>
-      </section>
 
-      <div className="ticks"></div>
-      <section id="spacer"></section>
-    </>
-  )
+        <div className="mt-12 transition-all duration-500 ease-in-out min-h-[300px]">
+          {activePillar ? (
+            triadData.map((pillar) => {
+              if (pillar.id !== activePillar) return null;
+              
+              return (
+                <div 
+                  key={`detail-${pillar.id}`} 
+                  className={`bg-white rounded-3xl shadow-xl overflow-hidden border-2 ${pillar.borderColor} animate-in fade-in slide-in-from-bottom-4`}
+                >
+                  <div className={`h-3 w-full ${pillar.color}`}></div>
+                  <div className="p-8 md:p-12">
+                    <h3 className={`text-3xl font-bold mb-8 ${pillar.textColor} flex items-center gap-3`}>
+                      <pillar.icon className="w-8 h-8" />
+                      Entendiendo la {pillar.title}
+                    </h3>
+                    
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+                      {/* Concepto Simple */}
+                      <div className="space-y-6">
+                        <div className="bg-slate-50 rounded-2xl p-6 border border-slate-100">
+                          <h4 className="text-xl font-bold text-slate-800 mb-3 flex items-center gap-2">
+                            <span className="text-2xl">🏠</span> En la vida real
+                          </h4>
+                          <p className="text-slate-600 leading-relaxed text-lg">
+                            {pillar.everydayExample}
+                          </p>
+                        </div>
+                      </div>
+
+                      {/* Concepto Técnico */}
+                      <div className="space-y-6">
+                        <div className={`${pillar.lightColor} rounded-2xl p-6 border ${pillar.borderColor}`}>
+                          <h4 className={`text-xl font-bold ${pillar.textColor} mb-3 flex items-center gap-2`}>
+                            <span className="text-2xl">💻</span> En el mundo digital
+                          </h4>
+                          <p className="text-slate-700 leading-relaxed text-lg">
+                            {pillar.cyberExample}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              );
+            })
+          ) : (
+            <div className="text-center p-12 bg-white rounded-3xl shadow-sm border border-slate-100 border-dashed">
+              <Shield className="w-16 h-16 text-slate-200 mx-auto mb-4" />
+              <p className="text-xl text-slate-500 font-medium">
+                Haz clic en cualquiera de los pilares de arriba para descubrir cómo funciona.
+              </p>
+            </div>
+          )}
+        </div>
+      </main>
+
+      <footer className="max-w-5xl mx-auto mt-20 px-4 text-center text-slate-500 text-sm">
+        <p>Infografía interactiva creada para enseñar los fundamentos de la Ciberseguridad.</p>
+        <p className="mt-2">Ningún sistema es 100% seguro si falla uno de estos 3 pilares.</p>
+      </footer>
+    </div>
+  );
 }
-
-export default App
